@@ -1,10 +1,10 @@
 ﻿using Domain.Entities.Abstractions;
 using Domain.Entities.Apartments;
 using Domain.Entities.Bookings;
+using Domain.Entities.Bookings.Enums;
 using Domain.Entities.Reviews.Events;
 using Domain.Entities.Reviews.ValueObjects;
 using Domain.Entities.Users;
-using System.Xml.Linq;
 
 namespace Domain.Entities.Reviews;
 public class Review : Entity<ReviewId>
