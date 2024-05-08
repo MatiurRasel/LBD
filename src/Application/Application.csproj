@@ -11,12 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\Clock\" />
-    <Folder Include="Abstractions\Data\" />
-    <Folder Include="Abstractions\Email\" />
-    <Folder Include="Apartments\" />
-    <Folder Include="Bookings\" />
-    <Folder Include="Exceptions\" />
     <Folder Include="Users\" />
   </ItemGroup>
 
