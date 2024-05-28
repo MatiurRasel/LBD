@@ -7,4 +7,3 @@ public record Address(
     string City,
     string Street);
 
-

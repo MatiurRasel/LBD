@@ -24,7 +24,7 @@ public sealed class Apartment : Entity<ApartmentId>
         CleaningFee = cleaningFee;
         Amenities = amenities;
     }
-
+    //Used for entity framework migrations or other scenarios requiring parameterless construction
     private Apartment() { }
 
     public string Name { get; private set; }
