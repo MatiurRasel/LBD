@@ -40,7 +40,7 @@ public sealed class AdminAuthorizationDelegatingHandler : DelegatingHandler
 
         var authorizationRequest = new HttpRequestMessage(
             HttpMethod.Post,
-            new Uri("http://bookify-idp:8080/auth/realms/bookify/protocol/openid-connect/token"))
+            new Uri("http://lbd-idp:8080/auth/realms/bookify/protocol/openid-connect/token"))
         {
             Content = authorizationRequestContext
         };

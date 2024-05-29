@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 services:
   lbd.api:
@@ -9,13 +9,12 @@ services:
       dockerfile: src/API/Dockerfile
     depends_on:
       - lbd-db
-  
+
   lbd-db:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: lbd.Db
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_DATABASE=lbd
       - SA_PASSWORD=sa1234
       - MSSQL_PID=Express
     volumes:
@@ -40,15 +39,14 @@ services:
     image: datalust/seq:latest
     container_name: lbd.Seq
     environment:
-     - ACCEPT_EULA=Y
+      - ACCEPT_EULA=Y
     ports:
-     - 5341:5341
-     - 8081:80
+      - 5341:5341
+      - 8081:80
 
   lbd-redis:
     image: redis:latest
     container_name: lbd.Redis
     restart: always
     ports:
-     - 6379:6379
-      
+      - 6379:6379
