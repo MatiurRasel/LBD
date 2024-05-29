@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Bookings;
+﻿using Application.Abstractions.Behaviors;
+using Domain.Entities.Bookings;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

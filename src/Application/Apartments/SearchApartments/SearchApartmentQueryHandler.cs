@@ -51,9 +51,8 @@ internal sealed class SearchApartmentQueryHandler
                     b.apartment_id = a.id AND
                     b.duration_start <= @EndDate AND
                     b.duration_end >= @StartDate AND
-                    b.status = ANY(@ActiveBookingStatuses)
-                    
-            )
+                    b.status IN (@ActiveBookingStatuses)
+            );
             """;
 
         var apartments = await connection.QueryAsync<ApartmentResponse, AddressResponse, ApartmentResponse>(

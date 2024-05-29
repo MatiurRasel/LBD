@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Messaging;
+using Application.Exceptions;
 using FluentValidation;
 using MediatR;
-using System;
 
 namespace Application.Abstractions.Behaviors;
 
