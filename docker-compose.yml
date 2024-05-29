@@ -1,0 +1,54 @@
+version: '3.4'
+
+services:
+  lbd.api:
+    image: ${DOCKER_REGISTRY-}lbdapi
+    container_name: API
+    build:
+      context: .
+      dockerfile: src/API/Dockerfile
+    depends_on:
+      - lbd-db
+  
+  lbd-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: lbd.Db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_DATABASE=lbd
+      - SA_PASSWORD=sa1234
+      - MSSQL_PID=Express
+    volumes:
+      - ./.container/database:/var/opt/mssql
+    ports:
+      - 1433:1433
+
+  lbd-idp:
+    image: jboss/keycloak:latest
+    container_name: lbd.Identity
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=/tmp/lbd-realm-export.json
+    volumes:
+      - ./.containers/identity:/opt/jboss/keycloak/standalone/data
+      - ./.files/bookify-realm-export.json:/tmp/lbd-realm-export.json
+    ports:
+      - 18080:8080
+
+  lbd-seq:
+    image: datalust/seq:latest
+    container_name: lbd.Seq
+    environment:
+     - ACCEPT_EULA=Y
+    ports:
+     - 5341:5341
+     - 8081:80
+
+  lbd-redis:
+    image: redis:latest
+    container_name: lbd.Redis
+    restart: always
+    ports:
+     - 6379:6379
+      
