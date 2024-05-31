@@ -51,7 +51,7 @@ internal sealed class SearchApartmentQueryHandler
                     b.apartment_id = a.id AND
                     b.duration_start <= @EndDate AND
                     b.duration_end >= @StartDate AND
-                    b.status IN (@ActiveBookingStatuses)
+                    b.status = ANY(@ActiveBookingStatuses)
             );
             """;
 

@@ -115,7 +115,7 @@ public static class DependencyInjection
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(connectionString).UseSnakeCaseNamingConvention();
+            options.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
         });
 
         #region Repositories
@@ -156,7 +156,7 @@ public static class DependencyInjection
     private static void AddHealthChecks(IServiceCollection services, IConfiguration configuration)
     {
         services.AddHealthChecks()
-            .AddSqlServer(configuration.GetConnectionString("Database"))
+            .AddNpgSql(configuration.GetConnectionString("Database"))
             .AddRedis(configuration.GetConnectionString("Cache"))
             .AddUrlGroup(new Uri(configuration["KeyCloak:BaseUrl"]), HttpMethod.Get, "keycloak");
     }
