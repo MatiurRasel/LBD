@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 
 [ApiController]
-[ApiVersion(ApiVersion.V1)]
-[ApiVersion(ApiVersion.V2)]
-[ApiVersion(ApiVersion.V3)]
+[ApiVersion(ApiVersions.V1)]
+[ApiVersion(ApiVersions.V2)]
+[ApiVersion(ApiVersions.V3)]
 [Route("api/v{version:apiVersion}/weather")]
 public class WeatherForecastController : ControllerBase
 {
@@ -33,7 +33,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("weathers")]
-    [MapToApiVersion(ApiVersion.V1)]
+    [MapToApiVersion(ApiVersions.V1)]
     public IEnumerable<WeatherForecast> GetV1()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -46,7 +46,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("weathers")]
-    [MapToApiVersion(ApiVersion.V2)]
+    [MapToApiVersion(ApiVersions.V2)]
     public IEnumerable<WeatherForecast> GetV2()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -59,7 +59,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("weathers")]
-    [MapToApiVersion(ApiVersion.V3)]
+    [MapToApiVersion(ApiVersions.V3)]
     public IEnumerable<WeatherForecast> GetV3()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast

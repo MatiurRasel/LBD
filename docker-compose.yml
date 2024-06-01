@@ -6,21 +6,21 @@ services:
     container_name: API
     build:
       context: .
-      dockerfile: src/API/Dockerfile
+      dockerfile: src/Api/Dockerfile
     depends_on:
       - lbd-db
 
   lbd-db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: postgres:latest
     container_name: lbd.Db
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=sa1234
-      - MSSQL_PID=Express
+      - POSTGRES_DB=lbd
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
-      - ./.container/database:/var/opt/mssql
+      - ./.container/database:/var/lib/postgresql/data
     ports:
-      - 1433:1433
+      - 5432:5432
 
   lbd-idp:
     image: jboss/keycloak:latest
@@ -31,7 +31,7 @@ services:
       - KEYCLOAK_IMPORT=/tmp/lbd-realm-export.json
     volumes:
       - ./.containers/identity:/opt/jboss/keycloak/standalone/data
-      - ./.files/bookify-realm-export.json:/tmp/lbd-realm-export.json
+      - ./.files/lbd-realm-export.json:/tmp/lbd-realm-export.json
     ports:
       - 18080:8080
 

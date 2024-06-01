@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Data;
 using Microsoft.Data.SqlClient;
+using Npgsql;
 using System.Data;
 
 namespace Infrastructure.Data;
@@ -11,7 +12,7 @@ internal sealed class SqlConnectionFactory : ISqlConnectionFactory
 
     public IDbConnection CreateConnection()
     {
-        var connection = new SqlConnection(_connectionString);
+        var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
 
         return connection;
